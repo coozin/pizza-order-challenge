@@ -1,8 +1,8 @@
 import React, { Component } from 'react'; 
 import { connect } from 'react-redux';
-// import { bindActionCreators } from 'redux'; 
+import { bindActionCreators } from 'redux'; 
 
-// import { selectSize } from '../actions/index'; 
+import { totalToppings } from '../actions/index'; 
 
 import { Query } from "react-apollo";
 import gql from "graphql-tag";
@@ -34,15 +34,30 @@ class PizzaToppings extends Component {
           if (loading) return <p>Loading...</p>;
           if (error) return <p>Error :(</p>;
 
+          setTimeout(() => { this.getTotalChecked() }, 500);
+
           return data.pizzaSizeByName.toppings.map(({ topping, defaultSelected }) => (
             defaultSelected ?
             <p key={topping.name}>
               {topping.name} (+{topping.price})&nbsp;
-              <input type="checkbox" name={topping.name} value="Topping" defaultChecked />
+              <input
+                type="checkbox"
+                name={topping.name}
+                className="topping"
+                value={topping.price}
+                defaultChecked
+                onClick={() => this.getTotalChecked()}
+              />
             </p> :
             <p key={topping.name}>
               {topping.name} (+{topping.price})&nbsp;
-              <input type="checkbox" name={topping.name} value="Topping" />
+              <input
+                type="checkbox"
+                name={topping.name}
+                className="topping"
+                value={topping.price}
+                onClick={() => this.getTotalChecked()}
+              />
             </p>
           ));
         }}
@@ -52,15 +67,19 @@ class PizzaToppings extends Component {
     }
   }
 
-  /* componentWillUpdate(){
-    const size = this.props.sizeSelected && this.props.sizeSelected["size"] ? this.props.sizeSelected["size"].toUpperCase(): ``
-    console.log('componentWillUpdate pizza toppings. size: ', size)
-    //this.renderList(size)
-    if (size && size.length !== 0) {
-      console.log(size)
-      console.log('entered')
+  getTotalChecked(){
+    var checkedValue = document.getElementsByClassName('topping')
+    
+    let total = 0;
+    for (let x = 0; x < checkedValue.length; x++) {
+      if(checkedValue[x].checked) {
+        console.log(checkedValue[x].value)
+        total += Number(checkedValue[x].value)
+      }
     }
-  } */
+    console.log('total toppings: ', total)
+    this.props.totalToppings(total)
+  }
 
   render(){
     const size = this.props.sizeSelected && this.props.sizeSelected["size"] ? this.props.sizeSelected["size"].toUpperCase(): ``
@@ -68,7 +87,7 @@ class PizzaToppings extends Component {
       <ul className="list-group col-xs-4">
         {this.renderList(size)}
       </ul>
-    ); 
+    );
   }
 }
 
@@ -78,8 +97,9 @@ function mapStateToProps(state){
   }; 
 }
 
-/* function mapDispatchToProps(dispatch){
-  return bindActionCreators({selectSize: selectSize}, dispatch); 
-} */
+function mapDispatchToProps(dispatch){
+  console.log('dispatching totalToppings', dispatch)
+  return bindActionCreators({totalToppings: totalToppings}, dispatch); 
+}
 
-export default connect(mapStateToProps, null)(PizzaToppings);
+export default connect(mapStateToProps, mapDispatchToProps)(PizzaToppings);

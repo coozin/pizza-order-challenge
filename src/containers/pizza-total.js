@@ -5,7 +5,9 @@ class PizzaTotal extends Component {
 
   renderTotal() {
     const baseVal = this.props.sizeSelected ? this.props.sizeSelected["basePrice"] : 0;
-    return `Total: $${baseVal}`;
+    const totalToppings = this.props.totalToppings ? this.props.totalToppings["totalToppings"] : 0
+    console.log('this.props.totalToppings: ', this.props.totalToppings)
+    return `Total: $${baseVal + totalToppings}`;
   }
 
   render(){
@@ -19,7 +21,8 @@ class PizzaTotal extends Component {
 
 function mapStateToProps(state){
   return {
-    sizeSelected: state.sizeSelected
+    sizeSelected: state.sizeSelected,
+    totalToppings: state.totalToppings
   }; 
 }
 

@@ -8,3 +8,13 @@ export function selectSize(size, basePrice){
     }
   };
 }
+
+export function totalToppings(total){
+  console.log('totalToppings action: ', total)
+  return {
+    type: 'TOPPINGS_TOTALLED', 
+    payload: {
+      'totalToppings': total,
+    }
+  };
+}
