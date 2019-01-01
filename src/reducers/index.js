@@ -1,7 +1,8 @@
 import { combineReducers } from 'redux';
+import SizeReducer from './pizza-size-reducer';
 
 const rootReducer = combineReducers({
-  state: (state = {}) => state
+  sizes: SizeReducer,
 });
 
 export default rootReducer;
