@@ -34,7 +34,9 @@ class PizzaToppings extends Component {
           if (loading) return <p>Loading...</p>;
           if (error) return <p>Error :(</p>;
 
-          setTimeout(() => { this.getTotalChecked() }, 500);
+          let { maxToppings } = data.pizzaSizeByName;
+
+          setTimeout(() => { this.getTotalChecked(maxToppings) }, 500);
 
           return data.pizzaSizeByName.toppings.map(({ topping, defaultSelected }) => (
             defaultSelected ?
@@ -46,7 +48,7 @@ class PizzaToppings extends Component {
                 className="topping"
                 value={topping.price}
                 defaultChecked
-                onClick={() => this.getTotalChecked()}
+                onClick={() => this.getTotalChecked(maxToppings)}
               />
             </p> :
             <p key={topping.name}>
@@ -56,7 +58,7 @@ class PizzaToppings extends Component {
                 name={topping.name}
                 className="topping"
                 value={topping.price}
-                onClick={() => this.getTotalChecked()}
+                onClick={() => this.getTotalChecked(maxToppings)}
               />
             </p>
           ));
@@ -67,14 +69,29 @@ class PizzaToppings extends Component {
     }
   }
 
-  getTotalChecked(){
+  getTotalChecked(maxToppings){
     var checkedValue = document.getElementsByClassName('topping')
-    
+
+    console.log('maxToppings', maxToppings)
+
     let total = 0;
+    let totalChecked = 0;
     for (let x = 0; x < checkedValue.length; x++) {
       if(checkedValue[x].checked) {
         console.log(checkedValue[x].value)
         total += Number(checkedValue[x].value)
+        totalChecked++;
+      }
+    }
+    if (totalChecked === maxToppings) {
+      for (let x = 0; x < checkedValue.length; x++) {
+        if(!checkedValue[x].checked) {
+          checkedValue[x].disabled = true;
+        }
+      }
+    } else {
+      for (let x = 0; x < checkedValue.length; x++) {
+        checkedValue[x].disabled = false;
       }
     }
     console.log('total toppings: ', total)
