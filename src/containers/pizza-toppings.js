@@ -74,6 +74,7 @@ class PizzaToppings extends Component {
 
     console.log('maxToppings', maxToppings)
 
+    let toppingsSelected = []
     let total = 0;
     let totalChecked = 0;
     for (let x = 0; x < checkedValue.length; x++) {
@@ -81,8 +82,11 @@ class PizzaToppings extends Component {
         console.log(checkedValue[x].value)
         total += Number(checkedValue[x].value)
         totalChecked++;
+        toppingsSelected.push(checkedValue[x].name)
       }
     }
+
+    // disabling logic
     if (totalChecked === maxToppings) {
       for (let x = 0; x < checkedValue.length; x++) {
         if(!checkedValue[x].checked) {
@@ -95,7 +99,8 @@ class PizzaToppings extends Component {
       }
     }
     console.log('total toppings: ', total)
-    this.props.totalToppings(total)
+    console.log('toppings selected: ', toppingsSelected)
+    this.props.totalToppings(total, toppingsSelected)
   }
 
   render(){
