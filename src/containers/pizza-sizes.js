@@ -1,10 +1,11 @@
 import React, { Component } from 'react'; 
 import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux'; 
+
 import { selectSize } from '../actions/index'; 
 
 import { Query } from "react-apollo";
 import gql from "graphql-tag";
-
 
 class PizzaSizes extends Component {
 
@@ -26,7 +27,8 @@ class PizzaSizes extends Component {
         return data.pizzaSizes.map(({ name, basePrice }) => (
           <div key={name}>
             <button
-              onClick={() => this.props.selectSize(name)}
+              onClick={() => this.props.selectSize(name, basePrice)}
+              className={`btn ${this.props.sizeSelected && this.props.sizeSelected['size'] === name ? 'btn-primary' : 'btn-default'}`}
             >{`Size: ${name}`}<br />{`Base Price: $${basePrice}`}</button>
           </div>
         ));
@@ -43,8 +45,14 @@ class PizzaSizes extends Component {
   }
 }
 
+function mapStateToProps(state){
+  return {
+    sizeSelected: state.sizeSelected
+  }; 
+}
+
 function mapDispatchToProps(dispatch){
   return bindActionCreators({ selectSize: selectSize}, dispatch); 
 }
 
-export default connect(null, mapDispatchToProps)(PizzaSizes); 
+export default connect(mapStateToProps, mapDispatchToProps)(PizzaSizes);

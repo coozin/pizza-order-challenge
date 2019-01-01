@@ -1,8 +1,8 @@
 import { combineReducers } from 'redux';
-import SizeReducer from './pizza-size-reducer';
+import SizeReducer from './reducer_active_size';
 
 const rootReducer = combineReducers({
-  sizes: SizeReducer,
+  sizeSelected: SizeReducer,
 });
 
 export default rootReducer;
