@@ -37,7 +37,6 @@ function mapStateToProps(state){
 }
 
 function mapDispatchToProps(dispatch){
-  console.log('dispatching addPizza', dispatch)
   return bindActionCreators({
     addPizza: addPizza,
     clearSize: clearSize,

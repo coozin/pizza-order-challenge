@@ -2,7 +2,9 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
-import { removePizza } from '../actions/index'; 
+import { removePizza } from '../actions/index';
+
+import PizzaCartItem from './pizza-cart-item';
 
 class PizzaCreate extends Component {
 
@@ -21,15 +23,22 @@ class PizzaCreate extends Component {
       <div key={count++} ref={count}>
         Pizza {number++}
         <button
-          className="btn btn-primary"
-          onClick={() => this.showDetails()}
-        >{this.state.showDetails ? 'Hide' : 'Show'} Details</button>
-        <button
           className="btn btn-danger"
           onClick={this.handleRemove.bind(this, count)}
           hand
         >Remove item</button>
-        { this.state.showDetails ? 
+        <PizzaCartItem
+          size={size}
+          base={base}
+          toppingsSelected={[...toppingsSelected]}
+          toppingsPrice={this.formatNumbers(toppingsPrice)}
+          pizzaTotal={this.formatNumbers(pizzaTotal)}
+        />
+      </div>
+    ));
+  }
+
+  /* { this.state.showDetails ? 
           <ul>
             <li>SIZE: {size}</li>
             <li>BASE PRICE: {base}</li>
@@ -39,10 +48,7 @@ class PizzaCreate extends Component {
             <li>TOPPINGS TOTAL PRICE: {this.formatNumbers(toppingsPrice)}</li>
             <li>PIZZA TOTAL: {this.formatNumbers(pizzaTotal)}</li>
           </ul> : null
-        }
-      </div>
-    ));
-  }
+          } */
 
   render(){
     return (
@@ -72,7 +78,6 @@ function mapStateToProps(state){
 }
 
 function mapDispatchToProps(dispatch){
-  console.log('dispatching removePizza', dispatch)
   return bindActionCreators({removePizza: removePizza}, dispatch); 
 }
 

@@ -128,7 +128,6 @@ function mapStateToProps(state){
 }
 
 function mapDispatchToProps(dispatch){
-  console.log('dispatching totalToppings', dispatch)
   return bindActionCreators({totalToppings: totalToppings}, dispatch); 
 }
 
