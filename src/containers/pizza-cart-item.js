@@ -9,8 +9,6 @@ class PizzaCartItem extends Component {
     this.state = {
       showDetails: false
     }
-
-    console.log('PROPS: ', props)
   }
 
   renderList(){

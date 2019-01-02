@@ -1,5 +1,4 @@
 export function selectSize(size, basePrice){
-  console.log('select size action: ', size, basePrice)
   return {
     type: 'SIZE_SELECTED', 
     payload: {
@@ -10,8 +9,6 @@ export function selectSize(size, basePrice){
 }
 
 export function totalToppings(total, toppings, maxToppings){
-  console.log('totalToppings action total: ', total)
-  console.log('totalToppings action toppings: ', total)
   return {
     type: 'TOPPINGS_TOTALLED', 
     payload: {

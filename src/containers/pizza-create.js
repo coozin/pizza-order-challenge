@@ -23,7 +23,6 @@ class PizzaCreate extends Component {
     const toppingsPrice = this.props.totalToppings["totalToppings"]
     const pizzaTotal = Number(basePrice) + Number(toppingsPrice)
     this.props.addPizza(size, basePrice, toppingsSelected, toppingsPrice, pizzaTotal)
-    console.log('size, basePrice, toppingsSelected, toppingsPrice, pizzaTotal', size, basePrice, toppingsSelected, toppingsPrice, pizzaTotal)
     this.props.clearSize()
     this.props.toppingsClear()
   }

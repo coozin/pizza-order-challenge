@@ -77,14 +77,11 @@ class PizzaToppings extends Component {
   getTotalChecked(maxToppings){
     var checkedValue = document.getElementsByClassName('topping')
 
-    console.log('maxToppings', maxToppings)
-
     let toppingsSelected = []
     let total = 0;
     let totalChecked = 0;
     for (let x = 0; x < checkedValue.length; x++) {
       if(checkedValue[x].checked) {
-        console.log(checkedValue[x].value)
         total += Number(checkedValue[x].value)
         totalChecked++;
         toppingsSelected.push(checkedValue[x].name)
@@ -103,8 +100,7 @@ class PizzaToppings extends Component {
         checkedValue[x].disabled = false;
       }
     }
-    console.log('total toppings: ', total)
-    console.log('toppings selected: ', toppingsSelected)
+
     this.props.totalToppings(total, toppingsSelected, maxToppings)
   }
 
