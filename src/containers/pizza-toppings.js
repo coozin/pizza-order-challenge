@@ -38,7 +38,7 @@ class PizzaToppings extends Component {
 
           setTimeout(() => { this.getTotalChecked(maxToppings) }, 500);
 
-          return data.pizzaSizeByName.toppings.map(({ topping, defaultSelected }) => (
+          let checkboxes = data.pizzaSizeByName.toppings.map(({ topping, defaultSelected }) => (
             defaultSelected ?
             <p key={topping.name}>
               {topping.name} (+{topping.price})&nbsp;
@@ -62,6 +62,13 @@ class PizzaToppings extends Component {
               />
             </p>
           ));
+
+          return (
+            <div>
+              Max Toppings Allowed: {maxToppings ? maxToppings : 'unlimited'}<br />
+              {checkboxes}
+            </div>
+          );
         }}
       </Query>;
     } else {
@@ -100,7 +107,7 @@ class PizzaToppings extends Component {
     }
     console.log('total toppings: ', total)
     console.log('toppings selected: ', toppingsSelected)
-    this.props.totalToppings(total, toppingsSelected)
+    this.props.totalToppings(total, toppingsSelected, maxToppings)
   }
 
   render(){
@@ -115,7 +122,7 @@ class PizzaToppings extends Component {
 
 function mapStateToProps(state){
   return {
-    sizeSelected: state.sizeSelected
+    sizeSelected: state.sizeSelected,
   }; 
 }
 

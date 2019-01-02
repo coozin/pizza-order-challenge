@@ -9,14 +9,15 @@ export function selectSize(size, basePrice){
   };
 }
 
-export function totalToppings(total, toppings){
+export function totalToppings(total, toppings, maxToppings){
   console.log('totalToppings action total: ', total)
   console.log('totalToppings action toppings: ', total)
   return {
     type: 'TOPPINGS_TOTALLED', 
     payload: {
       'totalToppings': total,
-      'toppingsSelected': toppings
+      'toppingsSelected': toppings,
+      'maxToppings': maxToppings
     }
   };
 }
