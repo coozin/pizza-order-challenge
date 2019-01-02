@@ -25,12 +25,11 @@ class PizzaSizes extends Component {
         if (error) return <p>Error :(</p>;
 
         return data.pizzaSizes.map(({ name, basePrice }) => (
-          <div key={name}>
-            <button
-              onClick={() => this.props.selectSize(name, basePrice)}
-              className={`btn ${this.props.sizeSelected && this.props.sizeSelected['size'] === name ? 'btn-primary' : 'btn-default'}`}
-            >{`Size: ${name}`}<br />{`Base Price: $${basePrice}`}</button>
-          </div>
+          <button
+            key={name}
+            onClick={() => this.props.selectSize(name, basePrice)}
+            className={`btn ${this.props.sizeSelected && this.props.sizeSelected['size'] === name ? 'btn-primary' : 'btn-default'}`}
+          >{`${name} (Starting at $${basePrice})`}</button>
         ));
       }}
     </Query>;
@@ -38,9 +37,12 @@ class PizzaSizes extends Component {
 
   render(){
     return (
-      <ul className="list-group col-xs-4">
-        {this.renderList()}
-      </ul>
+      <div className="col-xs-4">
+        Select a size<br />
+        <ul className="list-group">
+          {this.renderList()}
+        </ul>
+      </div>
     ); 
   }
 }

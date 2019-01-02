@@ -65,14 +65,12 @@ class PizzaToppings extends Component {
 
           return (
             <div>
-              Max Toppings Allowed: {maxToppings ? maxToppings : 'unlimited'}<br />
+              (Max {maxToppings ? maxToppings : 'unlimited'})<br />
               {checkboxes}
             </div>
           );
         }}
       </Query>;
-    } else {
-      return <div></div>
     }
   }
 
@@ -113,9 +111,12 @@ class PizzaToppings extends Component {
   render(){
     const size = this.props.sizeSelected && this.props.sizeSelected["size"] ? this.props.sizeSelected["size"].toUpperCase(): ``
     return (
-      <ul className="list-group col-xs-4">
-        {this.renderList(size)}
-      </ul>
+      <div className="col-xs-4">
+        Select your toppings<br />
+        <ul className="list-group">
+          {this.renderList(size)}
+        </ul>
+      </div>
     );
   }
 }

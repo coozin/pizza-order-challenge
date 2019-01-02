@@ -12,7 +12,12 @@ class PizzaTotal extends Component {
     let base = this.props.sizeSelected ? this.props.sizeSelected["basePrice"] : 0
     let totalToppings = this.props.totalToppings ? this.props.totalToppings["totalToppings"] : 0
     currentPizzaTotal = base + totalToppings
-    return <div>Current Pizza: ${this.formatNumbers(currentPizzaTotal)}<br /> Cart Total: ${this.formatNumbers(total)}</div>;
+    return (
+      <div>
+        Current Pizza: ${this.formatNumbers(currentPizzaTotal)}<br />
+        Cart Total: ${this.formatNumbers(total)}
+      </div>
+    );
   }
 
   render(){

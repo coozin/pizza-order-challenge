@@ -19,7 +19,7 @@ export default class App extends Component {
     return (
       <ApolloProvider client={client}>
         <div>
-          <h2>Select the size of your pizza</h2>
+          <h2>Pizza Builder 🍕</h2>
           <PizzaSizes />
           <PizzaToppings />
           <PizzaCreate />

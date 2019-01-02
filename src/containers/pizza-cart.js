@@ -19,6 +19,14 @@ class PizzaCreate extends Component {
     return this.props.addPizza.map(({ size, base, toppingsSelected, toppingsPrice, pizzaTotal }) => (
       <div key={count++}>
         Pizza {count + 1}
+        <button
+          className="btn btn-primary"
+          onClick={() => this.showDetails()}
+        >{this.state.showDetails ? 'Hide' : 'Show'} Details</button>
+        <button
+          className="btn btn-danger"
+          onClick={() => this.props.removePizza(count)}
+        >Remove item</button>
         { this.state.showDetails ? 
           <ul>
             <li>SIZE: {size}</li>
@@ -30,21 +38,13 @@ class PizzaCreate extends Component {
             <li>PIZZA TOTAL: {this.formatNumbers(pizzaTotal)}</li>
           </ul> : null
         }
-        <button
-          className="btn btn-primary"
-          onClick={() => this.showDetails()}
-        >{this.state.showDetails ? 'Hide' : 'Show'} Details</button>
-        <button
-          className="btn btn-danger"
-          onClick={() => this.props.removePizza(count)}
-        >Remove item</button>
       </div>
     ));
   }
 
   render(){
     return (
-      <ul className="list-group col-xs-4">
+      <ul className="list-group col-xs-12">
         {this.renderList()}
       </ul>
     ); 
