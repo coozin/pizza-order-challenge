@@ -33,3 +33,10 @@ export function addPizza(size, base, toppingsSelected, toppingsPrice, pizzaTotal
     }
   };
 }
+
+export function removePizza(key){
+  return {
+    type: 'REMOVE_PIZZA',
+    payload: key
+  };
+}

@@ -14,7 +14,7 @@ const client = new ApolloClient({
   uri: "https://core-graphql.dev.waldo.photos/pizza"
 });
 
-let pizzaData = {}
+/* let pizzaData = {}
 
 client
   .query({
@@ -38,7 +38,7 @@ client
   .then(result => {
     console.log(result)
     pizzaData = result
-  });
+  }); */
 
 export default class App extends Component {
   render() {

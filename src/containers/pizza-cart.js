@@ -1,11 +1,13 @@
 import React, { Component } from 'react'; 
 import { connect } from 'react-redux';
-// import { bindActionCreators } from 'redux';
+import { bindActionCreators } from 'redux';
+
+import { removePizza } from '../actions/index'; 
 
 class PizzaCreate extends Component {
 
   renderList(){
-    let count = 0;
+    let count = -1;
     return this.props.addPizza.map(({ size, base, toppingsSelected, toppingsPrice, pizzaTotal }) => (
       <div key={count++}>
         <ul>
@@ -17,6 +19,10 @@ class PizzaCreate extends Component {
           <li>TOPPINGS TOTAL PRICE: {toppingsPrice}</li>
           <li>PIZZA TOTAL: {pizzaTotal}</li>
         </ul>
+        <button
+          className="btn btn-danger"
+          onClick={() => this.props.removePizza(count)}
+        >Remove item</button>
       </div>
     ));
   }
@@ -33,7 +39,12 @@ class PizzaCreate extends Component {
 function mapStateToProps(state){
   return {
     addPizza: state.addPizza
-  }; 
+  };
 }
 
-export default connect(mapStateToProps, null)(PizzaCreate);
+function mapDispatchToProps(dispatch){
+  console.log('dispatching removePizza', dispatch)
+  return bindActionCreators({removePizza: removePizza}, dispatch); 
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(PizzaCreate);
