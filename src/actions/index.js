@@ -46,3 +46,9 @@ export function clearSize(){
     type: 'SIZE_CLEAR'
   }
 }
+
+export function toppingsClear(){
+  return {
+    type: 'TOPPINGS_CLEAR'
+  }
+}

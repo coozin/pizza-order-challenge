@@ -5,10 +5,14 @@ class PizzaTotal extends Component {
 
   renderTotal() {
     let total = 0
+    let currentPizzaTotal = 0
     for (let x = 0; x < this.props.addPizza.length; x++) {
       total = total + Number(this.props.addPizza[x]["pizzaTotal"])
     }
-    return `Cart Total: $${total}`;
+    let base = this.props.sizeSelected ? this.props.sizeSelected["basePrice"] : 0
+    let totalToppings = this.props.totalToppings ? this.props.totalToppings["totalToppings"] : 0
+    currentPizzaTotal = base + totalToppings
+    return <div>Current Pizza: ${this.formatNumbers(currentPizzaTotal)}<br /> Cart Total: ${this.formatNumbers(total)}</div>;
   }
 
   render(){
@@ -18,11 +22,17 @@ class PizzaTotal extends Component {
       </ul>
     ); 
   }
+
+  formatNumbers(num){
+    return parseFloat(Math.round(num * 100) / 100).toFixed(2)
+  }
 }
 
 function mapStateToProps(state){
   return {
-    addPizza: state.addPizza
+    addPizza: state.addPizza,
+    totalToppings: state.totalToppings,
+    sizeSelected: state.sizeSelected,
   }; 
 }
 

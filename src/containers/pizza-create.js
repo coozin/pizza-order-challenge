@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux'; 
 
-import { addPizza, clearSize } from '../actions/index';
+import { addPizza, clearSize, toppingsClear } from '../actions/index';
 
 class PizzaCreate extends Component {
 
@@ -25,6 +25,7 @@ class PizzaCreate extends Component {
     this.props.addPizza(size, basePrice, toppingsSelected, toppingsPrice, pizzaTotal)
     console.log('size, basePrice, toppingsSelected, toppingsPrice, pizzaTotal', size, basePrice, toppingsSelected, toppingsPrice, pizzaTotal)
     this.props.clearSize()
+    this.props.toppingsClear()
   }
 }
 
@@ -39,7 +40,8 @@ function mapDispatchToProps(dispatch){
   console.log('dispatching addPizza', dispatch)
   return bindActionCreators({
     addPizza: addPizza,
-    clearSize: clearSize
+    clearSize: clearSize,
+    toppingsClear: toppingsClear
   }, dispatch); 
 }
 
