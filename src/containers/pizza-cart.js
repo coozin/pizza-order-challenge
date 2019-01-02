@@ -16,16 +16,18 @@ class PizzaCreate extends Component {
 
   renderList(){
     let count = -1;
+    let number = 1;
     return this.props.addPizza.map(({ size, base, toppingsSelected, toppingsPrice, pizzaTotal }) => (
-      <div key={count++}>
-        Pizza {count + 1}
+      <div key={count++} ref={count}>
+        Pizza {number++}
         <button
           className="btn btn-primary"
           onClick={() => this.showDetails()}
         >{this.state.showDetails ? 'Hide' : 'Show'} Details</button>
         <button
           className="btn btn-danger"
-          onClick={() => this.props.removePizza(count)}
+          onClick={this.handleRemove.bind(this, count)}
+          hand
         >Remove item</button>
         { this.state.showDetails ? 
           <ul>
@@ -48,6 +50,10 @@ class PizzaCreate extends Component {
         {this.renderList()}
       </ul>
     ); 
+  }
+
+  handleRemove(i) {
+    this.props.removePizza(i)
   }
 
   showDetails() {
