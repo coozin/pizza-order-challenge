@@ -20,7 +20,7 @@ class PizzaCreate extends Component {
     let count = -1;
     let number = 1;
     return this.props.addPizza.map(({ size, base, toppingsSelected, toppingsPrice, pizzaTotal }) => (
-      <div className="col-xs-6 offset-xs-6" key={count++} ref={count}>
+      <div className="col-xs-12 my-margin" key={count++} ref={count}>
         <div className="my-float">Pizza {number++}</div>
         <PizzaCartItem
           size={size}
@@ -40,7 +40,10 @@ class PizzaCreate extends Component {
 
   render(){
     return (
-      this.renderList()
+      <div>
+        <div className="col-xs-12">Your cart</div>
+        {this.renderList()}
+      </div>
     ); 
   }
 

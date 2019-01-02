@@ -29,7 +29,7 @@ class PizzaSizes extends Component {
             key={name}
             onClick={() => this.props.selectSize(name, basePrice)}
             type="button"
-            className={`${this.props.sizeSelected && this.props.sizeSelected['size'] === name ? 'btn btn-primary' : 'btn test'}`}
+            className={`my-margin ${this.props.sizeSelected && this.props.sizeSelected['size'] === name ? 'btn btn-primary' : 'btn test'}`}
           >{`${name} (Starting at $${basePrice})`}</button>
         ));
       }}
