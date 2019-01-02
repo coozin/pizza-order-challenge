@@ -14,32 +14,6 @@ const client = new ApolloClient({
   uri: "https://core-graphql.dev.waldo.photos/pizza"
 });
 
-/* let pizzaData = {}
-
-client
-  .query({
-    query: gql`
-    {
-      pizzaSizes {
-        toppings {
-          topping {
-            name
-            price
-          }
-          defaultSelected
-        }
-        maxToppings
-        name
-        basePrice
-      }
-    }
-    `
-  })
-  .then(result => {
-    console.log(result)
-    pizzaData = result
-  }); */
-
 export default class App extends Component {
   render() {
     return (

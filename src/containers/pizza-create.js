@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux'; 
 
-import { addPizza } from '../actions/index';
+import { addPizza, clearSize } from '../actions/index';
 
 class PizzaCreate extends Component {
 
@@ -24,6 +24,7 @@ class PizzaCreate extends Component {
     const pizzaTotal = Number(basePrice) + Number(toppingsPrice)
     this.props.addPizza(size, basePrice, toppingsSelected, toppingsPrice, pizzaTotal)
     console.log('size, basePrice, toppingsSelected, toppingsPrice, pizzaTotal', size, basePrice, toppingsSelected, toppingsPrice, pizzaTotal)
+    this.props.clearSize()
   }
 }
 
@@ -36,7 +37,10 @@ function mapStateToProps(state){
 
 function mapDispatchToProps(dispatch){
   console.log('dispatching addPizza', dispatch)
-  return bindActionCreators({addPizza: addPizza}, dispatch); 
+  return bindActionCreators({
+    addPizza: addPizza,
+    clearSize: clearSize
+  }, dispatch); 
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(PizzaCreate);

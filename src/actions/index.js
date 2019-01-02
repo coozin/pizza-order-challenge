@@ -40,3 +40,9 @@ export function removePizza(key){
     payload: key
   };
 }
+
+export function clearSize(){
+  return {
+    type: 'SIZE_CLEAR'
+  }
+}
