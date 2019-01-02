@@ -20,13 +20,8 @@ class PizzaCreate extends Component {
     let count = -1;
     let number = 1;
     return this.props.addPizza.map(({ size, base, toppingsSelected, toppingsPrice, pizzaTotal }) => (
-      <div key={count++} ref={count}>
-        Pizza {number++}
-        <button
-          className="btn btn-danger"
-          onClick={this.handleRemove.bind(this, count)}
-          hand
-        >Remove item</button>
+      <div className="col-xs-6 offset-xs-6" key={count++} ref={count}>
+        <div className="my-float">Pizza {number++}</div>
         <PizzaCartItem
           size={size}
           base={base}
@@ -34,27 +29,18 @@ class PizzaCreate extends Component {
           toppingsPrice={this.formatNumbers(toppingsPrice)}
           pizzaTotal={this.formatNumbers(pizzaTotal)}
         />
+        <button
+          className="btn btn-danger my-float"
+          onClick={this.handleRemove.bind(this, count)}
+          hand
+        >x</button>
       </div>
     ));
   }
 
-  /* { this.state.showDetails ? 
-          <ul>
-            <li>SIZE: {size}</li>
-            <li>BASE PRICE: {base}</li>
-            {toppingsSelected.map((item) => (
-              <ol key={item}>{item}</ol>
-            ))}
-            <li>TOPPINGS TOTAL PRICE: {this.formatNumbers(toppingsPrice)}</li>
-            <li>PIZZA TOTAL: {this.formatNumbers(pizzaTotal)}</li>
-          </ul> : null
-          } */
-
   render(){
     return (
-      <ul className="list-group col-xs-12">
-        {this.renderList()}
-      </ul>
+      this.renderList()
     ); 
   }
 

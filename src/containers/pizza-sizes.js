@@ -28,7 +28,8 @@ class PizzaSizes extends Component {
           <button
             key={name}
             onClick={() => this.props.selectSize(name, basePrice)}
-            className={`btn ${this.props.sizeSelected && this.props.sizeSelected['size'] === name ? 'btn-primary' : 'btn-default'}`}
+            type="button"
+            className={`${this.props.sizeSelected && this.props.sizeSelected['size'] === name ? 'btn btn-primary' : 'btn test'}`}
           >{`${name} (Starting at $${basePrice})`}</button>
         ));
       }}
@@ -39,9 +40,7 @@ class PizzaSizes extends Component {
     return (
       <div className="col-xs-4">
         Select a size<br />
-        <ul className="list-group">
-          {this.renderList()}
-        </ul>
+        {this.renderList()}
       </div>
     ); 
   }

@@ -9,10 +9,10 @@ class PizzaCreate extends Component {
   render(){
     return (
       <button
-        className="btn btn-primary"
+        className="btn btn-success"
         disabled={!this.props.sizeSelected}
         onClick={() => this.createPizza()}
-      >Add pizza to cart</button>
+      >+ Add to cart</button>
     ); 
   }
 

@@ -20,11 +20,15 @@ export default class App extends Component {
       <ApolloProvider client={client}>
         <div>
           <h2>Pizza Builder 🍕</h2>
-          <PizzaSizes />
-          <PizzaToppings />
-          <PizzaCreate />
-          <PizzaCart />
-          <PizzaTotal />
+          <div className="row">
+            <PizzaSizes />
+            <PizzaToppings />
+            <PizzaCreate />
+          </div>
+          <div className="row">
+            <PizzaCart />
+            <PizzaTotal />
+          </div>
         </div>
       </ApolloProvider>
     );

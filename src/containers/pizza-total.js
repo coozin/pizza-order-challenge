@@ -13,7 +13,7 @@ class PizzaTotal extends Component {
     let totalToppings = this.props.totalToppings ? this.props.totalToppings["totalToppings"] : 0
     currentPizzaTotal = base + totalToppings
     return (
-      <div>
+      <div className="col-xs-12">
         Current Pizza: ${this.formatNumbers(currentPizzaTotal)}<br />
         Cart Total: ${this.formatNumbers(total)}
       </div>
@@ -22,9 +22,7 @@ class PizzaTotal extends Component {
 
   render(){
     return (
-      <ul className="list-group col-xs-4">
-        {this.renderTotal()}
-      </ul>
+      this.renderTotal()
     ); 
   }
 

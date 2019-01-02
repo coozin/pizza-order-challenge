@@ -16,7 +16,7 @@ class PizzaCartItem extends Component {
   renderList(){
     const {size, base, toppingsSelected, toppingsPrice, pizzaTotal} = this.props;
     return (
-      <ul className="list-group col-xs-12">
+      <ul className="list-group">
         <li>SIZE: {size}</li>
         <li>BASE PRICE: {base}</li>
         {toppingsSelected.map((item) => (
@@ -30,11 +30,11 @@ class PizzaCartItem extends Component {
 
   render(){
     return (
-    <div className="col-xs-12">
+    <div className="my-float">
       <button
         className="btn btn-primary"
         onClick={() => this.showDetails()}
-      >{this.state.showDetails ? 'Hide' : 'Show'} Details</button>
+      >{this.state.showDetails ? 'Hide Details ▲' : 'Show Details ▼'}  </button>
       {this.state.showDetails ? this.renderList() : null}
     </div>
     ); 
