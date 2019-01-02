@@ -4,10 +4,11 @@ import { connect } from 'react-redux';
 class PizzaTotal extends Component {
 
   renderTotal() {
-    const baseVal = this.props.sizeSelected ? this.props.sizeSelected["basePrice"] : 0;
-    const totalToppings = this.props.totalToppings ? this.props.totalToppings["totalToppings"] : 0
-    console.log('this.props.totalToppings: ', this.props.totalToppings)
-    return `Total: $${baseVal + totalToppings}`;
+    let total = 0
+    for (let x = 0; x < this.props.addPizza.length; x++) {
+      total = total + Number(this.props.addPizza[x]["pizzaTotal"])
+    }
+    return `Cart Total: $${total}`;
   }
 
   render(){
@@ -21,8 +22,7 @@ class PizzaTotal extends Component {
 
 function mapStateToProps(state){
   return {
-    sizeSelected: state.sizeSelected,
-    totalToppings: state.totalToppings
+    addPizza: state.addPizza
   }; 
 }
 

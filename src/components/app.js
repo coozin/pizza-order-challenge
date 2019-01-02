@@ -4,6 +4,7 @@ import PizzaSizes from '../containers/pizza-sizes';
 import PizzaToppings from '../containers/pizza-toppings';
 import PizzaTotal from '../containers/pizza-total';
 import PizzaCreate from '../containers/pizza-create';
+import PizzaCart from '../containers/pizza-cart';
 
 import { ApolloProvider } from "react-apollo";
 import ApolloClient from "apollo-boost";
@@ -48,6 +49,7 @@ export default class App extends Component {
           <PizzaSizes />
           <PizzaToppings />
           <PizzaCreate />
+          <PizzaCart />
           <PizzaTotal />
         </div>
       </ApolloProvider>
